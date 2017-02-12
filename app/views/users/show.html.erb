@@ -1,9 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <h2>
-  <strong>User:</strong>
   <%= @user.username %>
 </h2>
+
+<p>
+  <strong>Favorite style of <%= @user.username %>: </strong>
+  <%= @user.favorite_style%>
+</p>
+
+<% if @user.favorite_brewery%>
+  <p>
+    <strong>Favorite brewery of <%= @user.username %>: </strong>
+    <%= @user.favorite_brewery.name%>
+  </p>
+<% end %>  
 
 <% if current_user == @user%>
   <p><%= link_to 'Change your password', edit_user_path(@user) %></p>
@@ -11,7 +22,7 @@
 <% end %>  
 
 
-<h2>Your beer clubs</h2>
+<h2><%= @user.username%>'s beer clubs</h2>
 
 <ul>
   <% @user.beer_clubs.each do |club| %>

@@ -7,7 +7,17 @@ gem 'rails', '4.2.7'
 group :development, :test do
   gem 'sqlite3'
   gem "better_errors"
+  gem 'rspec-rails', '~> 3.5'
+  
 end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
+  gem 'rspec-its'
+end  
 
 group :production do
    gem 'pg'
