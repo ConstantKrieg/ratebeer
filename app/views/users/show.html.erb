@@ -32,7 +32,7 @@
 
 
 
-<p>has made <%= @user.ratings.count%> ratings, average of <%= @user.average_rating %></p>
+<p>has made <%= pluralize(@user.ratings.count, 'rating')%>, average of <%= @user.average_rating %></p>
 
 <h2>ratings</h2>
 
@@ -48,5 +48,4 @@
 </ul>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
