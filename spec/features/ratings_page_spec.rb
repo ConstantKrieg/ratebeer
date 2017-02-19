@@ -8,6 +8,7 @@ describe "Rating" do
   let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
   let!(:user) { FactoryGirl.create :user }
   let!(:user2) { FactoryGirl.create :user2}
+  let!(:style) {FactoryGirl.create :style}
 
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")
@@ -36,7 +37,6 @@ describe "Rating" do
     click_button "Create Rating"
 
     visit new_rating_path
-    
     select('Karhu, Koff', from:'rating[beer_id]')
     fill_in('rating[score]', with:'10')    
     click_button "Create Rating"
@@ -78,12 +78,19 @@ describe "Rating" do
   end 
 
   it "shows favorite brewery and style of user" do
+
+    visit new_beer_path
+    fill_in('beer_name', with:'Kalja')
+    select('Lager', from: 'beer[style_id]')
+    select('Koff', from: 'beer[brewery_id]')
+    click_button ('Create Beer')
+
     visit new_rating_path
-    select('Karhu, Koff', from:'rating[beer_id]')
+    select('Kalja, Koff', from:'rating[beer_id]')
     fill_in('rating[score]', with:'15')
     click_button "Create Rating"
 
-    save_and_open_page
+    
     expect(page).to have_content 'Favorite brewery of Pekka: Koff'
     expect(page).to have_content 'Favorite style of Pekka: Lager'
   end 

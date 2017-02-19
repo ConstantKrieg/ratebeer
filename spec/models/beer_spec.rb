@@ -4,7 +4,7 @@ RSpec.describe Beer, type: :model do
 
 
   it "isn't saved if a name is not given" do
-    beer = Beer.create style:"lager"
+    beer = Beer.create style_id:1
 
     expect(beer).not_to be_valid
     expect(Beer.count).to eq(0)
@@ -20,7 +20,7 @@ RSpec.describe Beer, type: :model do
 
 
   describe "with proper attributes" do
-    let(:beer){Beer.create name: "kalja", style:"lager"}
+    let(:beer){Beer.create name: "kalja", style_id: 1}
 
 
     it "is saved" do 

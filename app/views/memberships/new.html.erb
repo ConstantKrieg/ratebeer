@@ -1,10 +1,14 @@
-<h1>Join a club</h1>
 
-<%= form_for(@membership) do |f|%>
-    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, 'to_s')%>
+<div class="pos">
+  <h1>Join a club</h1>
+
+  <%= form_for(@membership) do |f|%>
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, 'to_s', selected: @membership.beer_club_id)%>
     <% if @beer_clubs.present? %>
         <%= f.submit %>
     <% end %>
-<% end %>
+  <% end %>
 
-<%= link_to 'Back', :back %>
+</div>
+
+

@@ -27,11 +27,12 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(membership_params)
     @membership.user_id = current_user.id
+    beer_club = BeerClub.find(@membership.beer_club_id)
 
     respond_to do |format|
       if @membership.save
         current_user.memberships << @membership
-        format.html { redirect_to current_user, notice: 'Membership was successfully created.' }
+        format.html { redirect_to  beer_club_path(@membership.beer_club_id), notice: 'Welcome!' }
       else
         @beer_clubs = BeerClub.all
         render :new

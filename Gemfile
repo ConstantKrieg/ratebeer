@@ -17,6 +17,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'rspec-its'
+  gem 'webmock'
 end  
 
 group :production do
@@ -47,6 +48,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'httparty'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'bootstrap_form' 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

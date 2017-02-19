@@ -13,11 +13,12 @@
 
 
 
-<p>
+<ul class="list-group">
 	<% @brewery.beers.each do |beer| %>
-		<%= beer.name %>
+		<li class="list-group-item"><%= beer.name %></li>
 	<% end %>
-</p>
+</ul>	
+
 
 <% if @brewery.ratings.empty? %>
 	<p>Beers from this brewery has not yet been rated</p>

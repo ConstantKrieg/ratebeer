@@ -2,7 +2,8 @@
 
 <h1>Listing Beer Clubs</h1>
 
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -23,6 +24,7 @@
   </tbody>
 </table>
 
+</div>
 <br>
 
 <%= link_to('New Beer club', new_beer_club_path) if current_user %>

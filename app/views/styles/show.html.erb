@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h2> <%= @style.name %></h2>
+
+<ul class="list-group">
+	<% @style.beers.each do |beer| %>
+		<li class="list-group-item"><%= beer.name %></li>
+	<% end %>
+</ul>
+<%= link_to 'Edit', edit_style_path(@style) %> 

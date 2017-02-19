@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       return nil if ratings.empty?
 
       styles = ratings.map{|r| r.beer.style}
-      styles.sort_by{|s| -average_style_rating(s)}.first  
+      styles.sort_by{|s| -average_style_rating(s)}.first 
     end
 
     def favorite_brewery
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
 
     def average_style_rating (style) 
-        styleRatings = ratings.select{|r| r.beer.style == style }
+        styleRatings = ratings.select{|r| r.beer.style == style}
         styleRatings.inject(0.0){|sum, n| sum + n.score} / styleRatings.count.to_f
     end
 

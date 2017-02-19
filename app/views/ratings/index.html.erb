@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
-
+<div class="pos">
 <h2>List of ratings</h2>
 
 <p>Number of ratings: <%= @ratings.count %></p>
 
-<ul>
+<ul class="list-group">
  <% @ratings.each do |rating| %>
-   <li> <%= rating.to_s %> <%= link_to(rating.user, rating.user) if current_user  %> </li>
+   <li class="list-group-item"> <%= rating.to_s %> <%= link_to(rating.user, rating.user) if current_user  %> </li>
  <% end %>
 </ul>
 
+</div>
 
 <% if current_user%>
    <%= link_to('New Rating', new_rating_path) if current_user %>

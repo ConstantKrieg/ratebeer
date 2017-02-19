@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+
 <h1>Listing breweries</h1>
 <p> Number of breweries: <%= @breweries.count %> </p>
 
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,8 +23,10 @@
     <% end %>
   </tbody>
 </table>
+</div>
+
 
 <br>
 
 <%= link_to('New Brewery', new_brewery_path) if current_user%>
-<%= link_to 'List of beers', beers_path %>
+

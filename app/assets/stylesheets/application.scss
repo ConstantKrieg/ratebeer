@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+require rails_bootstrap_forms
+
+
+p {
+    font-family: Cambria, Georgia, serif;
+    font-size: 16px;
+}
+
+h2 h1{
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+.centertitle {
+    position: relative;
+    left: 41%;
+    padding-bottom: 15px;
+}
+
+#infobox {
+    position: relative;
+    left: 87%;
+    max-width: 170px;
+    border-bottom: 2px #29293d;
+    border-right: 2px #29293d;
+    border-left: 2px #29293d;
+    font-weight: bold;
+    padding: 20px;
+}
+
+
+
+.pos {
+    position: absolute;
+    top: 10%;
+    left: 8%;
+}
+
+.list-group {
+  overflow: auto; 
+  height: 39em;
+  padding-top: 20px;
+}
+.list-group-item {
+    width: 27em;
+}
+
+#base{
+    position: relative;
+    left: 5%;
+}
+
+.table-responsive {
+  overflow: auto; 
+  height: 39em;
+  max-width: 90%; 
+}

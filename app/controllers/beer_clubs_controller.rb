@@ -11,6 +11,14 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
+    @beer_club = BeerClub.find(params[:id])
+
+    if @beer_club.members.include?(current_user) 
+      @membership = Membership.select{|m| m.user == current_user && m.beer_club == @beer_club}.first
+    else   
+      @membership = Membership.new
+      @membership.beer_club_id = @beer_club.id
+    end  
   end
 
   # GET /beer_clubs/new

@@ -1,4 +1,5 @@
-<%= form_for(@beer) do |f| %>
+<%= bootstrap_form_for(@beer) do |f| %>
+<div class="form-group">
   <% if @beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@beer.errors.count, "error") %> prohibited this beer from being saved:</h2>
@@ -12,18 +13,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :style %><br>
-    <%= f.text_field :style %>
+    <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name)%>
   </div>
   <div class="field">
-    <%= f.label :brewery_id %><br>
-    <%= f.number_field :brewery_id %>
+    <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name)%>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>  
 <% end %>

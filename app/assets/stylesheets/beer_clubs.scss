@@ -1,3 +1,19 @@
 // Place all the styles related to the BeerClubs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.new_beer_club{
+    position: relative;
+    left: 10%;
+    max-width: 400px;
+}
+
+#members {
+    position: fixed;
+  top: 20%;
+  left: 25%;
+}
+
+#club_button {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
