@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Ratebeer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Ratebeer</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<div class="navbar navbar-inverse">
-
-<ul class="nav navbar-nav">
-  <li><%= link_to 'breweries', breweries_path %></li>
-  <li><%= link_to 'beers', beers_path %></li>
-  <li><%= link_to 'ratings', ratings_path %></li>
-  <li><%= link_to 'beer clubs', beer_clubs_path%></li>
-  <li><%= link_to 'users', users_path%></li>
-  <li><%= link_to 'places', places_path%></li>
-  <li><%= link_to 'styles', styles_path %></li>
+  <div class="navbar navbar-inverse">
+    <main role"main" class=".container">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'breweries', breweries_path %></li>
+      <li><%= link_to 'beers', beers_path %></li>
+      <li><%= link_to 'ratings', ratings_path %></li>
+      <li><%= link_to 'beer clubs', beer_clubs_path%></li>
+      <li><%= link_to 'users', users_path%></li>
+      <li><%= link_to 'places', places_path%></li>
+      <li><%= link_to 'styles', styles_path %></li>
   
   
-  <% if current_user %>
-    <li><%= link_to current_user.username, current_user%></li>
-    <li><%= link_to 'rate a beer', new_rating_path %></li>
-    <li><%= link_to 'join a club', new_membership_path%></li>
-    <li><%= link_to 'sign out', '/signout', method: :delete%></li>
-  <% else %>
-    <li><%= link_to 'sign in', '/signin'%></li>
-    <li><%= link_to 'sign up', '/signup'%></li>
-  <% end %>  
-  </ul>
-</div>
+      <% if current_user %>
+      
+       
+              <li><%= link_to 'your profile', current_user%></li>
+              <li><%= link_to 'rate a beer', new_rating_path %></li>
+              <li><%= link_to 'join a club', new_membership_path%></li>
+              <li><%= link_to 'sign out', '/signout', method: :delete%></li>
+           
+    
+      <% else %>
+        <li><%= link_to 'sign in', '/signin'%></li>
+        <li><%= link_to 'sign up', '/signup'%></li>
+      <% end %>  
+        </ul>
+      </div>
 
-  <div id="infobox">
-    <% if current_user %>
-      <p><%= current_user.username %> signed in</p>
-    <% end %>
+      <div id="infobox">
+        <% if current_user %>
+          <p><%= current_user.username %> signed in</p>
+        <% end %>
 
-    <% if session[:last_rating].nil? %>
-      <p>no ratings given</p>
-    <% else %>
-      <p>previous rating <%= session[:last_rating] %></p>
-    <% end %>
-  </div>
+        <% if session[:last_rating].nil? %>
+          <p>no ratings given</p>
+        <% else %>
+          <p>previous rating <%= session[:last_rating] %></p>
+        <% end %>
+      </div>
 
-  <div id="base">
-    <%= yield %>
-  </div>
+      <div id="base" class="row">
+        <div class="col-md-8">
+          <%= yield %>
+        </div> 
+      </div>
 
-</body>
+    </main>
+  </body>
 </html>

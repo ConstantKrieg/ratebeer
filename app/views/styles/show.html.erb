@@ -2,6 +2,10 @@
 
 <h2> <%= @style.name %></h2>
 
+<% if current_user && current_user.admin? %>
+    <%= link_to 'Destroy', @style, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure? Deleting style will also delete every beer of that style' } %>  
+<% end %>
+
 <ul class="list-group">
 	<% @style.beers.each do |beer| %>
 		<li class="list-group-item"><%= beer.name %></li>

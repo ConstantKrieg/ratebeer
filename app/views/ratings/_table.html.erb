@@ -1,0 +1,20 @@
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Average</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% list.each do |item| %>
+      <tr>
+        <td><%= item %></td>
+        <td><%= round(item.average_rating) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -13,6 +13,16 @@ class Beer < ActiveRecord::Base
 	def to_s
 		"#{self.name}, #{self.brewery.name}"
 	end
+
+	def self.top(size)
+	  sorted_by_rating = Beer.all.sort_by{|b| -average_rating_for_beer(b)}
+	  sorted_by_rating.first(size)	
+	end
+
+	def self.average_rating_for_beer(beer)
+	  return 0.0 if beer.ratings.empty?
+	  beer.ratings.inject(0.0){|sum, n| sum + n.score} / beer.ratings.count.to_f
+	end		
 end
 
 

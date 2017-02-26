@@ -1,55 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<h2>
-  <%= @user.username %>
-</h2>
 
-<p>
-  <strong>Favorite style of <%= @user.username %>: </strong>
-  <%= @user.favorite_style %>
-</p>
-
-
-<% if @user.favorite_brewery%>
-  <p>
-    <strong>Favorite brewery of <%= @user.username %>: </strong>
-    <%= @user.favorite_brewery %>
-  </p>
-<% end %>  
-
-<% if current_user == @user%>
-  <p><%= link_to 'Change your password', edit_user_path(@user) %></p>
-  <p><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-<% end %>  
-
-<div id="beer_clubs">
-<h2><%= @user.username%>'s beer clubs</h2>
-
-<ul class="list-group">
-  <% @user.beer_clubs.each do |club| %>
-    <li class="list-group-item"><%= link_to club, club %></li>
-  <% end %>  
-</ul>
-</div>
-
-
-<p>has made <%= pluralize(@user.ratings.count, 'rating')%>, average of <%= @user.average_rating %></p>
-
-<div id="ratings">
-<h2>ratings</h2>
-
-<ul class="list-group">
-  <% @user.ratings.each do |rating| %>
-    <li class="list-group-item">
-      <%= rating %> 
-      <% if @user == current_user%>
-        <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="row">
+  <div class="col-sm-4"> 
+    <h2>
+      <%= @user.username %>
+      <%if @user.admin %>
+        <span class="label label-info">Admin</span>
+      <% end %>  
+      <% if @user.banned? %>
+        <span class="label label-danger">Banned</span>
       <% end %> 
-    </li>  
-  <% end %>
-</ul>
+    </h2> 
+    <br>  
+    <% if current_user && current_user.admin == true && current_user != @user %>
+      <%= link_to "change status", toggle_banned_user_path(@user.id), method: :post, class:"btn btn-primary"%>
+    <% end %>
 
-</div>
+    <% if @user.favorite_style%>
+      <p>
+        <strong>Favorite style of <%= @user.username %>: </strong>
+        <%= @user.favorite_style.name %>
+      </p>
+    <% end %>
+
+    <% if @user.favorite_brewery%>
+      <p>
+        <strong>Favorite brewery of <%= @user.username %>: </strong>
+        <%= @user.favorite_brewery.name %>
+      </p>
+    <% end %>  
+
+    <% if current_user == @user%>
+      <p><%= link_to 'Change your password', edit_user_path(@user) %></p>
+      <p><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% end %>  
+
+  </div>
+
+  <div id="col-sm-4">
+    <h2><%= @user.username%>'s beer clubs</h2>
+
+    <ul class="list-group">
+    <% @user.beer_clubs.each do |club| %>
+       <li class="list-group-item"><%= link_to club, club %></li>
+      <% end %>  
+   </ul>
+  </div>
+
+
+
+
+  <div id="col-sm-4">
+    <ul class="list-group">
+      <p>has made <%= pluralize(@user.ratings.count, 'rating')%>, average of <%= round(@user.average_rating) %></p>
+      <h2>ratings</h2>
+      <% @user.ratings.each do |rating| %>
+        <li class="list-group-item">
+          <%= rating %> 
+           <% if @user == current_user%>
+            <%= link_to 'delete', rating, method: :delete, class:'btn btn-danger btn-xs pull-right', data: { confirm: 'Are you sure?' } %>
+          <% end %> 
+        </li>  
+      <% end %>
+    </ul>
+  </div>
+
+</div>  
 
 
 

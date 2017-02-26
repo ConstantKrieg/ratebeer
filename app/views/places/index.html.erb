@@ -2,15 +2,19 @@
 
 <p id="notice"><%= notice %></p>
 
-<div id="placeSearch">
+<div class="row">
+  <div class= "col-md-2 col-md-offset-5">
   <%= form_tag places_path do %>
     city <%= text_field_tag :city, params[:city] %>
     <%= submit_tag "Search" %>
   <% end %>
+  </div>
 </div>  
 
+
+
 <% if @places %>
-  <div class="table-responsive">
+  <div class="table-responsive" id="placeBox">
   <table class="table">
     <thead>
       <td><strong> name </strong></td>

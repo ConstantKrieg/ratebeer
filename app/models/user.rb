@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     has_many :beer_clubs, through: :memberships
 
     def to_s
-        self.username
+        "#{self.username} | #{self.ratings.count}"
     end
 
     def favorite_beer
@@ -28,24 +28,18 @@ class User < ActiveRecord::Base
       return nil if ratings.empty?
 
       styles = ratings.map{|r| r.beer.style}
-      styles.sort_by{|s| -average_style_rating(s)}.first 
+      styles.sort_by{|s| s.average_rating}.reverse.first 
     end
 
     def favorite_brewery
       return nil if ratings.empty?
 
       breweries = ratings.map{|r| r.beer.brewery }
-      breweries.sort_by{|b| -average_brewery_rating(b)}.first
+      breweries.sort_by{|b| b.average_rating}.reverse.first
     end        
 
-
-    def average_style_rating (style) 
-        styleRatings = ratings.select{|r| r.beer.style == style}
-        styleRatings.inject(0.0){|sum, n| sum + n.score} / styleRatings.count.to_f
-    end
-
-    def average_brewery_rating (brewery)
-        breweryRatings = ratings.select{|r| r.beer.brewery == brewery}
-        breweryRatings.inject(0.0){|sum, n| sum + n.score} / breweryRatings.count.to_f
-    end    
+    def self.most_active_users(size)  
+      sorted_by_activity = User.all.sort_by{|u| u.ratings.count}
+      sorted_by_activity.reverse.first(size)    
+    end        
 end

@@ -6,8 +6,10 @@ class Rating < ActiveRecord::Base
                                        less_than_or_equal_to: 50,
                                        only_integer: true } 
 
+     scope :recent, ->(num) { order('created_at DESC').limit(num) }                              
+
 
      def to_s
-        "#{self.beer.name} #{self.score}"
+        "#{self.beer.name} #{self.score} | #{self.user.username}"
      end    
 end

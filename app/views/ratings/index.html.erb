@@ -1,16 +1,40 @@
 <p id="notice"><%= notice %></p>
-<div class="pos">
-<h2>List of ratings</h2>
+<h1>Ratings</h1>
 
-<p>Number of ratings: <%= @ratings.count %></p>
+<div class="row">
 
-<ul class="list-group">
- <% @ratings.each do |rating| %>
-   <li class="list-group-item"> <%= rating.to_s %> <%= link_to(rating.user, rating.user) if current_user  %> </li>
- <% end %>
-</ul>
+  <div class=col-sm-4>
+    <h2>Top rated breweries</h2>
+    <%= render 'table', list: @top_breweries%>
+  </div>
 
+  <div class=col-sm-4>
+    <h2>Top rated beers</h2>
+    <%= render 'table', list: @top_beers%>
+  </div>
+
+   <div class=col-sm-4>
+    <h2>Top rated styles</h2>
+    <%= render 'table', list: @top_styles%>
+  </div>  
 </div>
+
+
+<div class="row">
+  <div class=col-sm-4>
+    <h2>Most active users</h2>
+    <p><strong>username | ratings</strong></p>
+    <%= render 'list', list: @most_active%>
+  </div>
+
+  <div class=col-sm-4>
+    <h2>Most recent ratings</h2>
+    <p><strong>rating | user</strong></p> 
+    <%= render 'list', list: @latest%>
+  </div>
+</div>
+
+
 
 <% if current_user%>
    <%= link_to('New Rating', new_rating_path) if current_user %>

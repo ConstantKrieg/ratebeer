@@ -20,6 +20,8 @@
 require rails_bootstrap_forms
 
 
+
+
 p {
     font-family: Cambria, Georgia, serif;
     font-size: 16px;
@@ -38,9 +40,6 @@ h2 h1{
     position: relative;
     left: 87%;
     max-width: 170px;
-    border-bottom: 2px #29293d;
-    border-right: 2px #29293d;
-    border-left: 2px #29293d;
     font-weight: bold;
     padding: 20px;
 }
@@ -54,8 +53,8 @@ h2 h1{
 }
 
 .list-group {
-  overflow: auto; 
-  height: 39em;
+  overflow: auto;
+  max-height: 39em; 
   padding-top: 20px;
 }
 .list-group-item {
@@ -69,6 +68,10 @@ h2 h1{
 
 .table-responsive {
   overflow: auto; 
-  height: 39em;
+  max-height: 39em;
   max-width: 90%; 
+}
+
+.btn btn-primary {
+ font-color: #FFF;
 }

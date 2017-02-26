@@ -26,10 +26,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.admin = false
+    @user.banned = false
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to '/signin', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -51,6 +53,16 @@ class UsersController < ApplicationController
       end
     end
   end
+
+
+  def toggle_banned
+    user = User.find(params[:id])
+    user.update_attribute :banned, (not user.banned)
+
+    new_status = user.banned? ? "banned" : "not banned"
+
+    redirect_to :back, notice:"user status changed to #{new_status}"
+  end  
 
   # DELETE /users/1
   # DELETE /users/1.json
