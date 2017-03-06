@@ -1,21 +1,23 @@
 <p id="notice"><%= notice %></p>
 <h1>Ratings</h1>
 
+<% cache "ratings", skip_digest: true do %>
+
 <div class="row">
 
   <div class=col-sm-4>
     <h2>Top rated breweries</h2>
-    <%= render 'table', list: @top_breweries%>
+    <%= render 'table', list: @top_breweries, cached: true %>
   </div>
 
   <div class=col-sm-4>
     <h2>Top rated beers</h2>
-    <%= render 'table', list: @top_beers%>
+    <%= render 'table', list: @top_beers, cached: true %>
   </div>
 
    <div class=col-sm-4>
     <h2>Top rated styles</h2>
-    <%= render 'table', list: @top_styles%>
+    <%= render 'table', list: @top_styles, cached: true %>
   </div>  
 </div>
 
@@ -24,17 +26,18 @@
   <div class=col-sm-4>
     <h2>Most active users</h2>
     <p><strong>username | ratings</strong></p>
-    <%= render 'list', list: @most_active%>
+    <%= render 'list', list: @most_active, cached: true %>
   </div>
 
   <div class=col-sm-4>
     <h2>Most recent ratings</h2>
     <p><strong>rating | user</strong></p> 
-    <%= render 'list', list: @latest%>
+    <%= render 'list', list: @latest, cached: true %>
   </div>
 </div>
 
 
+<% end %>
 
 <% if current_user%>
    <%= link_to('New Rating', new_rating_path) if current_user %>

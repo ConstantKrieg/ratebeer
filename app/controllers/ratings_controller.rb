@@ -1,7 +1,15 @@
 class RatingsController < ApplicationController
+
   before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :skip_if_cached, only:[:index]
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if request.format.html? and fragment_exist?( "ratings" )
+  end
+
   def index
-    @ratings  = Rating.all
+    #Toteutin fragment cachingilla index sivun tallentamisen välimuistiin
     @top_breweries = Brewery.top 3
     @top_beers = Beer.top 3
     @most_active = User.most_active_users 5

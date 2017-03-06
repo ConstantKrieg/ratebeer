@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% cache @beer do %>
+
 <h2>
   <%= @brewery.name %>
   <% if not @brewery.active %>
@@ -34,5 +36,5 @@
     <p> Has <%= pluralize(@brewery.ratings.count, 'rating')%>, average <%= @brewery.average_rating %></p>
 <% end %>		
 
-
+<% end %>
 <%= edit_and_destroy_buttons(@brewery) %>

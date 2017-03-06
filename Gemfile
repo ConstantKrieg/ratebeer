@@ -9,6 +9,7 @@ group :development, :test do
   gem "better_errors"
   gem 'rspec-rails', '~> 3.5'
   
+  
 end
 
 group :test do
@@ -18,6 +19,8 @@ group :test do
   gem 'simplecov', require: false
   gem 'rspec-its'
   gem 'webmock'
+  gem 'selenium-webdriver', '2.53.4'
+  gem 'database_cleaner'
 end  
 
 group :production do
@@ -46,13 +49,23 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rack-mini-profiler'
+
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'sucker_punch', '~> 2.0'
+
 gem 'httparty'
+
+gem 'omniauth-github'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'bootstrap_form' 
+
+gem 'jquery-turbolinks'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

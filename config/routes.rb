@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
 
-  resources :memberships
+  resources :memberships do
+    post 'toggle_confirmed', on: :member
+  end  
   resources :beer_clubs
   resources :users do
     post 'toggle_banned', on: :member
@@ -15,6 +17,9 @@ Rails.application.routes.draw do
   #get 'ratings', to: 'ratings#index'
   #get 'ratings/new', to: 'ratings#new'
   #post 'ratings', to: 'ratings#create'
+  get 'beerlist', to:'beers#list'
+  get 'auth/:provider/callback', to: 'sessions#create_oauth'
+  get 'brewerylist', to:'breweries#list'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'

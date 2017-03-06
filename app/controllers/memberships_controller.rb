@@ -28,6 +28,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(membership_params)
     @membership.user_id = current_user.id
     beer_club = BeerClub.find(@membership.beer_club_id)
+    @membership.confirmed = false
 
     respond_to do |format|
       if @membership.save
@@ -53,6 +54,14 @@ class MembershipsController < ApplicationController
       end
     end
   end
+
+
+  def toggle_confirmed
+    membership = Membership.find(params[:id])
+    membership.confirmed = true
+    membership.save
+    redirect_to :back
+  end  
 
   # DELETE /memberships/1
   # DELETE /memberships/1.json
